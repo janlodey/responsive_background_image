@@ -1,0 +1,26 @@
+/* DEFAULT */
+.b-lazy{
+    background: #efefef;
+
+    background-position: center center;
+    background-repeat: none;
+    background-size: cover;
+
+    min-height: 200px;
+}
+
+
+
+
+/* OPTIONAL TRANSITION */
+/*.b-lazy {*/
+    /*-webkit-transition: opacity 250ms ease-in-out;*/
+    /*-moz-transition: opacity 250ms ease-in-out;*/
+    /*-o-transition: opacity 250ms ease-in-out;*/
+    /*transition: opacity 250ms ease-in-out;*/
+    /*max-width: 100%;*/
+    /*opacity: 0;*/
+/*}*/
+/*.b-lazy.b-loaded {*/
+    /*opacity: 1;*/
+/*}*/

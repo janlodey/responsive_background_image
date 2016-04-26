@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Contains responsive_background_image.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\views\Plugin\views\field;
+
+/**
+ * Implements hook_help().
+ */
+function responsive_background_image_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the responsive_background_image module.
+    case 'help.page.responsive_background_image':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Apply image fields display formatter as data source attributes, uses B-Lazy js library which then renders a background image on the parent entity') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Preprocess the entity and force in the attr and a blazy class.
+ * TO-DO - this should all be done to detect the field display type presence and then grab and apply to parent entity, or target setting
+ *
+ * @param $variables
+ * @param $hook
+ */
+function responsive_background_image_preprocess(&$variables, $hook){
+  // only run this preprocess on the following entity types
+  $valid_entity_types = array('node', 'eck_entity', 'block', 'taxonomy');
+  // if background card image entity
+  if(isset($variables['entity']) && in_array($hook, $valid_entity_types)){
+    // get the fields from the entity so we can loop through them and check for the background formatter
+    $entity_fields = $variables['entity']['#entity']->getFields();
+    foreach($entity_fields as $key => $item){
+      // check if one of the fields is using the entity background formatter
+      if(isset($variables['entity'][$key]) && $variables['entity'][$key]['#formatter'] = 'responsive_background_image'){
+        // Double check if attributes were set
+        if(isset($variables['entity'][$key][0]['#data-src']) && !empty($variables['entity'][$key][0]['#data-src'])){
+          $attr = $variables['entity'][$key][0]['#data-src'];
+          foreach ($attr as $type => $value){
+            $variables['attributes'][$type] = $value;
+          }
+          $variables['attributes']['class'] = 'b-lazy b-lazy-loading';
+        }
+      }
+    }
+  }
+}

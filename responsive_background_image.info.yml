@@ -1,0 +1,5 @@
+name: Responsive Background Image Formatter
+type: module
+description: A module to assist in applying image field urls as data source attributes, these are then processed by the B-Lazy js library to generate background image on the parent entity
+core: 8.x
+package: Other
