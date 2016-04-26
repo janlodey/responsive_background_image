@@ -1,7 +1,7 @@
 {
   "name": "drupal/responsive_background_image",
   "type": "drupal-module",
-  "description": "A module to assist in applying image fields as data source attributes, uses B-Lazy js library",
+  "description": "A field display formatter for applying a responsive background image to the parent entity using the B-Lazy js plugin",
   "keywords": ["Drupal"],
   "license": "GPL-2.0+",
   "homepage": "https://www.drupal.org/project/responsive_background_image",
