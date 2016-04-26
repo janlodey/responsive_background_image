@@ -26,11 +26,11 @@ class ResponsiveBackground extends ImageFormatter {
    * {@inheritdoc}
    */
   public static function defaultSettings() {
-    return array(
+    return [
         'image_style_desktop' => '',
         'image_style_tablet' => '',
         'image_style_mobile' => ''
-    );
+    ];
   }
 
   /**
@@ -106,7 +106,7 @@ class ResponsiveBackground extends ImageFormatter {
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
 
-    $elements = array();
+    $elements = [];
 
     $settings = $this->getSettings();
     $files = $this->getEntitiesToView($items, $langcode);
@@ -122,8 +122,7 @@ class ResponsiveBackground extends ImageFormatter {
 
     foreach ($files as $delta => $file) {
 
-      $item_attributes = array();
-      $image_url = '';
+      $item_attributes = [];
 
       foreach($image_style as $key => $item){
         if ($item) {
@@ -137,15 +136,15 @@ class ResponsiveBackground extends ImageFormatter {
 
       }
 
-      $elements[$delta] = array(
+      $elements[$delta] = [
         '#markup' => '',
         '#data-src' => $item_attributes,
-        '#attached' => array(
-          'library' => array(
+        '#attached' => [
+          'library' => [
             'responsive_background_image/b-lazy'
-          ),
-        ),
-      );
+          ],
+        ],
+      ];
 
     }
 
